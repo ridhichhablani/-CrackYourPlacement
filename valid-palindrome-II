@@ -1,0 +1,22 @@
+
+class Solution:
+    def validPalindrome(self, s: str) -> bool:
+        def isPalindrome(left: int, right: int) -> bool:
+            while left < right:
+                if s[left] != s[right]:
+                    return False
+                left += 1
+                right -= 1
+            return True
+        
+        def canBePalindrome(left: int, right: int) -> bool:
+            while left < right:
+                if s[left] == s[right]:
+                    left += 1
+                    right -= 1
+                else:
+                    # Check by skipping either the character at `left` or `right`
+                    return isPalindrome(left + 1, right) or isPalindrome(left, right - 1)
+            return True
+
+        return canBePalindrome(0, len(s) - 1)
