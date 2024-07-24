@@ -1,0 +1,17 @@
+class Solution:
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        a = set()
+        temp = head
+        prev = None
+        
+        while temp is not None:
+            if temp.val in a:
+                # Skip the duplicate node
+                prev.next = temp.next
+            else:
+                a.add(temp.val)
+                prev = temp
+            # Move to the next node
+            temp = temp.next
+        
+        return head
